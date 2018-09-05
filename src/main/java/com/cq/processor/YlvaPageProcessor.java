@@ -11,6 +11,7 @@ import us.codecraft.webmagic.processor.PageProcessor;
  **/
 public class YlvaPageProcessor implements PageProcessor {
     private Site site = Site.me().setRetryTimes(3).setSleepTime(100);
+    private static int count = 0;
 
 
     @Override
@@ -25,6 +26,7 @@ public class YlvaPageProcessor implements PageProcessor {
             page.putField("title", title);
             page.putField("author", author);
             page.putField("price",priceString);
+            count++;
         } else
             page.setSkip(true);
 
@@ -36,10 +38,16 @@ public class YlvaPageProcessor implements PageProcessor {
     }
 
     public static void main(String args[]){
+    	long startTime, endTime;
+        System.out.println("开始爬取...");
+        startTime = System.currentTimeMillis();
+
         Spider.create(new YlvaPageProcessor())
                 .addUrl("https://www.ylva-publishing.com/product-category/ylva-publishing")
                 .thread(5)
                 .run();
+        endTime = System.currentTimeMillis();
+        System.out.println("爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒，抓取了" + count + "条记录");
     }
 }
 
