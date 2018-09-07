@@ -1,4 +1,4 @@
-package com.cq.model;
+package com.cq.bookCrawler.model;
 
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.model.ConsolePageModelPipeline;

@@ -1,7 +1,6 @@
-package com.cq.model;
+package com.cq.bookCrawler.model;
 
 import us.codecraft.webmagic.Site;
-import us.codecraft.webmagic.example.GithubRepo;
 import us.codecraft.webmagic.model.ConsolePageModelPipeline;
 import us.codecraft.webmagic.model.OOSpider;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
@@ -13,7 +12,7 @@ import us.codecraft.webmagic.model.annotation.TargetUrl;
  * @create: 2018-08-26 16:39
  **/
 @TargetUrl("https://www\\.goodreads\\.com/book/show/\\w+.*")
-@HelpUrl("")
+@HelpUrl("https://www.goodreads.com/book")
 public class GoodreadsModel {
 
     @ExtractBy(value = "//*[@id='bookTitle']/text()", notNull = true)
@@ -51,7 +50,7 @@ public class GoodreadsModel {
     }
 
     public static void main(String[] args) {
-        OOSpider.create(Site.me().setSleepTime(1000)
+        OOSpider.create(Site.me().setSleepTime(100)
                 , new ConsolePageModelPipeline(), GoodreadsModel.class)
                 .addUrl("https://www.goodreads.com/book").thread(3).run();
     }
