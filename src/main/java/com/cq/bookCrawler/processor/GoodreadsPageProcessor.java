@@ -11,7 +11,22 @@ import us.codecraft.webmagic.processor.PageProcessor;
  **/
 public class GoodreadsPageProcessor implements PageProcessor {
 
-    private Site site = Site.me().setRetryTimes(3).setSleepTime(100);
+    //书列表地址
+    public static final String BOOKLIST_URL = "";
+
+    public static final String DOMAIN = "goodreads.com";
+    //初始地址
+    public static final String ENTRY_URL = "https://www.goodreads.com/book";
+
+    public static final String USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_2) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.65 Safari/537.31";
+
+
+    private Site site = Site.me()
+            .setDomain(DOMAIN)
+            .setRetryTimes(3)
+            .setSleepTime(100)
+            .setUserAgent(USER_AGENT);
+
 
     @Override
     public void process(Page page) {
@@ -30,7 +45,7 @@ public class GoodreadsPageProcessor implements PageProcessor {
     }
 
     public static void main(String arge[]){
-        Spider.create(new GoodreadsPageProcessor()).addUrl("https://www.goodreads.com/book").thread(5).run();
+        Spider.create(new GoodreadsPageProcessor()).addUrl(ENTRY_URL).thread(5).run();
     }
 
 }

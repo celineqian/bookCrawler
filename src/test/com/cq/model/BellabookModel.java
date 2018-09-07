@@ -1,4 +1,4 @@
-package com.cq.bookCrawler.model;
+package com.cq.model;
 
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.model.ConsolePageModelPipeline;
@@ -6,8 +6,6 @@ import us.codecraft.webmagic.model.OOSpider;
 import us.codecraft.webmagic.model.annotation.ExtractBy;
 import us.codecraft.webmagic.model.annotation.HelpUrl;
 import us.codecraft.webmagic.model.annotation.TargetUrl;
-
-import java.io.Console;
 
 /**
  * @author: Celine Q
