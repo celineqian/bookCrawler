@@ -1,13 +1,12 @@
 package com.cq.bookCrawler.processor;
 
 
-
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-public class CSNDProcessorTest implements PageProcessor{
+public class CSNDPageProcessor implements PageProcessor{
 
 	 //http://blog.csdn.net/weixin_35852328/article/list/1
     public static final String URL_LIST = "http://blog\\.csdn\\.net/weixin_35852328/article/list/\\d{1}";
@@ -47,7 +46,7 @@ public class CSNDProcessorTest implements PageProcessor{
 	        long startTime, endTime;
 	        System.out.println("开始爬取...");
 	        startTime = System.currentTimeMillis();
-	        Spider.create(new CSNDProcessorTest()).addUrl("http://blog.csdn.net/weixin_35852328/article/list/3").thread(5).run();
+	        Spider.create(new CSNDPageProcessor()).addUrl("http://blog.csdn.net/weixin_35852328/article/list/3").thread(5).run();
 	        endTime = System.currentTimeMillis();
 	        System.out.println("爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒，抓取了" + count + "条记录");
 
