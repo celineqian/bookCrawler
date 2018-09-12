@@ -1,5 +1,8 @@
 package com.cq.bookCrawler;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +11,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class SeleniumTest {
 
-	@Test
 	 public void testSelenium() {
 	   if(System.getProperty("os.name").contains("Mac"))
 	       System.setProperty("webdriver.chrome.driver","/Users/Celine/Downloads/chromedriver");
@@ -23,5 +25,16 @@ public class SeleniumTest {
         element.click();
         driver.close();
     }
+	
+	@Test
+	public void UnixTimeConvert(){
+		String timestamp = "1158851760805";
+        Date date = new Date(Long.valueOf(timestamp));
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd: hh:mm:ss");
+        String formattedTime = sdf.format(date);
+        System.out.println(formattedTime);
+
+	}
+
 }
 	

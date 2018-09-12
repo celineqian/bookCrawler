@@ -10,10 +10,12 @@ public class TabuaClubMember {
 
     private String TBCard;
 
-    private String passpor;
+    private String password;
 
     private String name;
 
+    private Date applyDate;
+    
     private Date expiryDate;
 
     private String statusCredit;
@@ -22,61 +24,70 @@ public class TabuaClubMember {
 
     private String email;
 
+	public String getTBCard() {
+		return TBCard;
+	}
 
-    public String getPasspor() {
-        return passpor;
-    }
+	public void setTBCard(String tBCard) {
+		TBCard = tBCard;
+	}
 
-    public void setPasspor(String passpor) {
-        this.passpor = passpor;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getTBCard() {
-        return TBCard;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setTBCard(String TBCard) {
-        this.TBCard = TBCard;
-    }
+	public Date getApplyDate() {
+		return applyDate;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setApplyDate(Date applyDate) {
+		this.applyDate = applyDate;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
 
-    public Date getExpiryDate() {
-        return expiryDate;
-    }
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
+	}
 
-    public void setExpiryDate(Date expiryDate) {
-        this.expiryDate = expiryDate;
-    }
+	public String getStatusCredit() {
+		return statusCredit;
+	}
 
-    public String getStatusCredit() {
-        return statusCredit;
-    }
+	public void setStatusCredit(String statusCredit) {
+		this.statusCredit = statusCredit;
+	}
 
-    public void setStatusCredit(String statusCredit) {
-        this.statusCredit = statusCredit;
-    }
+	public String getUpgradeCredit() {
+		return upgradeCredit;
+	}
 
-    public String getUpgradeCredit() {
-        return upgradeCredit;
-    }
+	public void setUpgradeCredit(String upgradeCredit) {
+		this.upgradeCredit = upgradeCredit;
+	}
 
-    public void setUpgradeCredit(String upgradeCredit) {
-        this.upgradeCredit = upgradeCredit;
-    }
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 }
 

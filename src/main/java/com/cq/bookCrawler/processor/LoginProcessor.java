@@ -23,19 +23,28 @@ public class LoginProcessor implements PageProcessor {
 
 	@Override
 	public void process(Page page) {
-        page.addTargetRequests(page.getHtml().links().regex("https://www\\.fijiairways\\.com/tabua-club/your-membership/").all());
-        String name = page.getHtml().xpath("//span[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblFirstName']/b/text()").toString();
-        String scb = page.getHtml().xpath("//span[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblStatusCreditBalanceValue']/b/text()").toString();
+		
+//		page.addTargetRequests(page.getHtml().links().regex("https://www\\.fijiairways\\.com/tabua-club/\\w+.+[+member+]\\w+.*").all());
+        page.addTargetRequests(page.getHtml().links().regex("https://www\\.fijiairways\\.com/tabua-club/member-login/").all());
+        page.addTargetRequests(page.getHtml().links().regex("https://www\\.fijiairways\\.com/tabua-club/membership-activity").all());
+        page.addTargetRequests(page.getHtml().links().regex("https://www\\.fijiairways\\.com/tabua-club/your-membership").all());
+        
+        String name = page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblFirstName']/b/text()").toString();
+        String scb = page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblStatusCreditBalanceValue']/b/text()").toString();
 		String ucb = page.getHtml().xpath("//span[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblUpgradeCreditBalanceValue']/b/text()").toString();
 		String expireDate =  page.getHtml().xpath("//*[@id='cpContent_itemContentCtrl_ProfileDashboard_20_lblExpiryDateValue']/b/text()").toString();
-
-		if(name != null){
+		String lastActivity = page.getHtml().xpath("//*[@id='main']/table[3]/tbody/tr[3]/td/div/text()").toString();
+		if(name != null)
 			page.putField("Name: ", name);
+		if(scb != null)
 			page.putField("Status Credit Balance: ", scb);
+		if(ucb != null)
 			page.putField("Upgrade Credit Balance: ", ucb);
+		if(expireDate != null)
 			page.putField("Membership Expiry Date: ", expireDate);
+		if(lastActivity != null){
+			page.putField("last Ativity: ", lastActivity);
 		}
-
 	}
 
 	public void login(){
@@ -45,17 +54,23 @@ public class LoginProcessor implements PageProcessor {
             System.setProperty("webdriver.chrome.driver","D:\\Dev\\driver\\chromedriver.exe");
 
         driver = new ChromeDriver();
-        driver.get("https://www.fijiairways.com/tabua-club/member-login/");
+        //获得登陆页面
+        driver.get("https://www.fijiairways.com/tabua-club/member-login");
+        //确认访问地点
         WebElement e = driver.findElement(By.xpath("//div[@class='terms-of-use-accept-button Button Color_5d4b3f']"));
-        if(e!=null){
+        if(e != null){
         	e.click();
-        	driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtMembershipNumber']")).sendKeys("0ZHVNP");
-        	driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtPassword']")).sendKeys("pstc123");
-        	WebElement element = driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_ibtnLogin']"));
-            element.click();
+        	//填写登陆信息
+        	driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtMembershipNumber']")).sendKeys("CVWGPM");
+        	driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_txtPassword']")).sendKeys("llhtb123");
+        	e = driver.findElement(By.xpath("//*[@id='cpContent_itemContentCtrl_TabuaLogin_19_ibtnLogin']"));
+            e.click();
+            //页面切换
+            e = driver.findElement(By.xpath("//*[@id='main']/table[2]/tbody/tr[4]/td[1]/a"));
+            if(e != null)
+            	e.click();
             cookies = driver.manage().getCookies();
         }
-		driver.close();
 	}
 	
 	@Override
@@ -70,5 +85,6 @@ public class LoginProcessor implements PageProcessor {
 		LoginProcessor lp = new LoginProcessor();
 		lp.login();
 		Spider.create(lp).addUrl("https://www.fijiairways.com/tabua-club/member-login/").run();
+		driver.close();
 	}
 }

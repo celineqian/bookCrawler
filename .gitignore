@@ -4,6 +4,7 @@ mvnw
 applog/
 .mvn／
 .DS_Store
+.gitignore
 
 ### STS ###
 .apt_generated
