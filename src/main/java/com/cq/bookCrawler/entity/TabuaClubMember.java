@@ -1,38 +1,60 @@
 package com.cq.bookCrawler.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * @author: Celine Q
  * @create: 2018-09-11 21:49
  **/
+@Entity
+@Table(name = "t_tabuaclubmember")
 public class TabuaClubMember {
 
-    private String TBCard;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
+    @Column(nullable = false)
+    private String cardNumber;
+
+    @Column(nullable = false)
     private String password;
 
+    @Column
     private String name;
 
+    @Column
     private Date applyDate;
-    
+
+    @Column
     private Date expiryDate;
 
+    @Column
     private String statusCredit;
 
+    @Column
     private String upgradeCredit;
 
+    @Column
     private String email;
 
-	public String getTBCard() {
-		return TBCard;
+	public TabuaClubMember(String cardNumber, String password, String name) {
+		this.cardNumber = cardNumber;
+		this.password = password;
+		this.name = name;
 	}
 
-	public void setTBCard(String tBCard) {
-		TBCard = tBCard;
-	}
+	public String getCardNumber() {
+        return cardNumber;
+    }
 
-	public String getPassword() {
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
+    }
+
+    public String getPassword() {
 		return password;
 	}
 
@@ -88,6 +110,12 @@ public class TabuaClubMember {
 		this.email = email;
 	}
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
 
