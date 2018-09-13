@@ -39,6 +39,7 @@ public class TabuaClubMember {
 
     @Column
     private String email;
+    
 
 	public TabuaClubMember(String cardNumber, String password, String name) {
 		this.cardNumber = cardNumber;
