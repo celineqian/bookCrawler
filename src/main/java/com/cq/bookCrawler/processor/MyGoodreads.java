@@ -11,6 +11,7 @@ import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author: Celine Q
@@ -53,6 +54,7 @@ public class MyGoodreads implements PageProcessor {
         WebElement e = driver.findElement(By.xpath("//*[@id='choices']/div/button"));
         if(e != null){
             e.click();
+            //切换窗口到登陆页面
             Set handles = driver.getWindowHandles();
             String title;
             for(Object handle:handles){
@@ -66,11 +68,16 @@ public class MyGoodreads implements PageProcessor {
             e = driver.findElement(By.xpath("//*[@id='signInSubmit']"));
             if(e != null)
                 e.click();
-            Set hs = driver.getWindowHandles();
-            System.out.println("看看现在有几个 ： "  + hs.size());
+            //切换回主窗口
+            handles = driver.getWindowHandles();
+            for(Object handle:handles){
+                title = driver.switchTo().window(handle.toString()).getTitle();
+                if(title.contains("Recent Updates")){
+                    break;
+                }
+            }
             cookies = driver.manage().getCookies();
         }
-
 
     }
 
