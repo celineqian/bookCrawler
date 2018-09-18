@@ -1,4 +1,4 @@
-package com.cq.bookCrawler.processor;
+package com.cq.bookCrawler.example;
 
 
 import us.codecraft.webmagic.Page;

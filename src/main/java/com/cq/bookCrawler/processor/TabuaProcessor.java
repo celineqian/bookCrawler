@@ -14,7 +14,7 @@ import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-public class LoginProcessor implements PageProcessor {
+public class TabuaProcessor implements PageProcessor {
 
 	private Site site = Site.me().setRetryTimes(3).setSleepTime(100)
 			.setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36");
@@ -80,7 +80,7 @@ public class LoginProcessor implements PageProcessor {
 	}
 
 	public static void main(String args[]){
-		LoginProcessor lp = new LoginProcessor();
+		TabuaProcessor lp = new TabuaProcessor();
 		lp.login();
 		Spider.create(lp).addUrl("https://www.fijiairways.com/tabua-club/member-login/").run();
 		driver.close();

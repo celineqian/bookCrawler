@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class SeleniumTest {
 
+    @Test
 	 public void testSelenium() {
 	   if(System.getProperty("os.name").contains("Mac"))
 	       System.setProperty("webdriver.chrome.driver","/Users/Celine/Downloads/chromedriver");
@@ -26,7 +27,7 @@ public class SeleniumTest {
         driver.close();
     }
 	
-	@Test
+//	@Test
 	public void UnixTimeConvert(){
 		String timestamp = "1158851760805";
         Date date = new Date(Long.valueOf(timestamp));
